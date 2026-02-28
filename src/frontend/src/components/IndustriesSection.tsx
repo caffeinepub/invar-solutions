@@ -78,8 +78,12 @@ export function IndustriesSection() {
   return (
     <section
       id="industries"
-      className="py-24 lg:py-32 relative overflow-hidden"
-      style={{ background: "oklch(0.12 0.025 245)" }}
+      className="py-24 lg:py-32 relative"
+      style={{
+        background: "oklch(0.12 0.025 245)",
+        isolation: "isolate",
+        overflow: "clip",
+      }}
       ref={sectionRef}
     >
       <div className="container mx-auto px-6 lg:px-8 relative z-10">

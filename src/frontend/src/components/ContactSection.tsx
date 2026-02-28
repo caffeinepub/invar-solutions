@@ -101,22 +101,16 @@ export function ContactSection() {
     <section
       id="contact"
       className="py-24 lg:py-32 relative overflow-hidden"
-      style={{ background: "oklch(0.12 0.025 245)" }}
+      style={{
+        background: "oklch(0.12 0.025 245)",
+        isolation: "isolate",
+        zIndex: 1,
+      }}
       ref={sectionRef}
     >
       {/* Background decorations */}
       <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-cyan/5 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-cyan/5 rounded-full blur-3xl pointer-events-none" />
-
-      {/* Grid */}
-      <div
-        className="absolute inset-0 opacity-4 pointer-events-none"
-        style={{
-          backgroundImage:
-            "linear-gradient(oklch(0.78 0.18 195) 1px, transparent 1px), linear-gradient(90deg, oklch(0.78 0.18 195) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-        }}
-      />
 
       <div className="container mx-auto px-6 lg:px-8 relative z-10">
         <div className="max-w-5xl mx-auto">
