@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Font Faces ─────────────────────────────────────────────────────────── */
+@font-face {
+  font-family: "Bricolage Grotesque";
+  src: url("/assets/fonts/BricolageGrotesque[opsz,wdth,wght].woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Sora";
+  src: url("/assets/fonts/Sora[wght].woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("/assets/fonts/JetBrainsMono[wght].woff2") format("woff2");
+  font-weight: 100 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  :root {
+    --radius: 0.5rem;
+
+    /* AutoFlow Dark High-Tech Palette */
+    /* Deep navy background */
+    --background: 0.1 0.02 250;
+    --foreground: 0.95 0.01 220;
+
+    /* Card surfaces */
+    --card: 0.13 0.025 245;
+    --card-foreground: 0.95 0.01 220;
+
+    /* Popover */
+    --popover: 0.15 0.025 245;
+    --popover-foreground: 0.95 0.01 220;
+
+    /* Primary: electric cyan */
+    --primary: 0.78 0.18 195;
+    --primary-foreground: 0.08 0.02 245;
+
+    /* Secondary: deep indigo */
+    --secondary: 0.18 0.04 255;
+    --secondary-foreground: 0.9 0.01 220;
+
+    /* Muted */
+    --muted: 0.16 0.03 250;
+    --muted-foreground: 0.55 0.04 240;
+
+    /* Accent: bright cyan glow */
+    --accent: 0.85 0.2 195;
+    --accent-foreground: 0.08 0.02 245;
+
+    /* Destructive */
+    --destructive: 0.6 0.22 27;
+    --destructive-foreground: 0.95 0.01 220;
+
+    /* Borders & inputs */
+    --border: 0.22 0.04 240;
+    --input: 0.18 0.04 245;
+    --ring: 0.78 0.18 195;
+
+    /* Charts */
+    --chart-1: 0.78 0.18 195;
+    --chart-2: 0.65 0.2 265;
+    --chart-3: 0.7 0.15 160;
+    --chart-4: 0.82 0.16 85;
+    --chart-5: 0.72 0.2 310;
+
+    /* Sidebar */
+    --sidebar: 0.12 0.025 245;
+    --sidebar-foreground: 0.95 0.01 220;
+    --sidebar-primary: 0.78 0.18 195;
+    --sidebar-primary-foreground: 0.08 0.02 245;
+    --sidebar-accent: 0.18 0.04 255;
+    --sidebar-accent-foreground: 0.9 0.01 220;
+    --sidebar-border: 0.22 0.04 240;
+    --sidebar-ring: 0.78 0.18 195;
+
+    /* Custom brand tokens */
+    --cyan: 0.78 0.18 195;
+    --cyan-bright: 0.88 0.2 195;
+    --navy-deep: 0.08 0.02 250;
+    --navy-mid: 0.12 0.025 245;
+    --navy-surface: 0.15 0.03 245;
+    --glow-cyan: 0 0 40px oklch(0.78 0.18 195 / 0.4);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    color-scheme: dark;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Sora", sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Bricolage Grotesque", sans-serif;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+}
+
+@layer utilities {
+  .font-display {
+    font-family: "Bricolage Grotesque", sans-serif;
+  }
+  .font-body {
+    font-family: "Sora", sans-serif;
+  }
+  .font-mono {
+    font-family: "JetBrains Mono", monospace;
+  }
+
+  /* Glow utilities */
+  .glow-cyan {
+    box-shadow: 0 0 30px oklch(0.78 0.18 195 / 0.35);
+  }
+  .glow-cyan-sm {
+    box-shadow: 0 0 15px oklch(0.78 0.18 195 / 0.25);
+  }
+  .text-glow-cyan {
+    text-shadow: 0 0 60px oklch(0.78 0.18 195 / 0.5), 0 0 120px oklch(0.78 0.18 195 / 0.2);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, oklch(0.92 0.18 190), oklch(0.68 0.22 210));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Section backgrounds */
+  .section-navy {
+    background: oklch(var(--navy-deep));
+  }
+  .section-navy-mid {
+    background: oklch(var(--navy-mid));
+  }
+  .section-surface {
+    background: oklch(var(--navy-surface));
+  }
+
+  /* Grid noise texture overlay */
+  .noise-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* Animate fade-in-up */
+  @keyframes fade-in-up {
+    from {
+      opacity: 0;
+      transform: translateY(24px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slide-in-left {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px oklch(0.78 0.18 195 / 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px oklch(0.78 0.18 195 / 0.6);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fade-in-up 0.7s ease forwards;
+  }
+
+  .animate-fade-in {
+    animation: fade-in 0.6s ease forwards;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+
+  /* Initial invisible state for scroll reveal */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s cubic-bezier(0.22, 1, 0.36, 1), transform 0.65s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .reveal-delay-1 { transition-delay: 100ms; }
+  .reveal-delay-2 { transition-delay: 200ms; }
+  .reveal-delay-3 { transition-delay: 300ms; }
+  .reveal-delay-4 { transition-delay: 400ms; }
+  .reveal-delay-5 { transition-delay: 500ms; }
+  .reveal-delay-6 { transition-delay: 600ms; }
+}
